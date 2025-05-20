@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro dei Professori</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        label { display: block; margin-top: 10px; }
+        input { margin-bottom: 10px; }
+        ul { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Benvenuto al registro dei prof!</h1>
+
+    <form id="registroForm">
+        <label for="prof">A quale prof diamo il voto?</label>
+        <input type="text" id="prof" required>
+
+        <label for="materia">Per quale materia?</label>
+        <input type="text" id="materia" required>
+
+        <label for="voto">Che voto gli diamo?</label>
+        <input type="number" id="voto" min="1" max="10" required>
+
+        <button type="submit">Inserisci voto</button>
+    </form>
+
+    <h2>Voti inseriti:</h2>
+    <ul id="registroOutput"></ul>
+
+    <script>
+        const form = document.getElementById('registroForm');
+        const output = document.getElementById('registroOutput');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const prof = document.getElementById('prof').value;
+            const materia = document.getElementById('materia').value;
+            const voto = document.getElementById('voto').value;
+
+            const voce = document.createElement('li');
+            voce.textContent = `Al prof ${prof}, in ${materia}, abbiamo messo ${voto}`;
+            output.appendChild(voce);
+
+            // Pulisci il modulo
+            form.reset();
+        });
+    </script>
+</body>
+</html>
